@@ -1,6 +1,5 @@
 package org.Pedido;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class Cardapio {
@@ -26,7 +25,7 @@ public class Cardapio {
 
 
 
-    public static void getCardapio() {
+    public static void exibirCardapio() {
          int index = 1;
         System.out.println("--------- CARDAPIO --------");
         for (ItemCardapio itemCardapio : itensDoCardapio) {

@@ -1,13 +1,11 @@
 package org.SwitchUserInput;
 
-import com.sun.source.doctree.EscapeTree;
 import org.InputValidor.InputValidator;
 import org.Menu.Menu;
 import org.Pedido.Cardapio;
 import org.Pedido.ItemCardapio;
 import org.Pedido.Pedido;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,7 +24,7 @@ public class SwitchInput {
                     String adicionarItemAoPedido;
                     String nomeProPedido = scanner.nextLine();;
                     do {
-                        Cardapio.getCardapio();
+                        Cardapio.exibirCardapio();
                         InputValidator.intValidator(scanner);
                         Integer itemSelecionado = scanner.nextInt();
                         itemSelecionado = InputValidator.inputInRange1to7(itemSelecionado);
