@@ -28,7 +28,8 @@ public class Cardapio {
     public static void getCardapio() {
          int index = 1;
         for (ItemCardapio itemCardapio : itensDoCardapio) {
-            System.out.println(index + " - " + itemCardapio.nome + " R$" + String.format( "%.2f",itemCardapio.preco));
+            System.out.println(index + " - " + itemCardapio.getNome() + " R$" + String.format( "%.2f",
+                    itemCardapio.getPreco()));
             index++;
         }
     }
