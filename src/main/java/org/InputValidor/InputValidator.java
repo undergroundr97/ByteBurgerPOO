@@ -12,11 +12,21 @@ public class InputValidator {
        return true;
     }
 
-    public static boolean yesNoValidator(String yesNo){
+    public static String yesNoValidator(String yesNo){
         while(!yesNo.equalsIgnoreCase("s") && !yesNo.equalsIgnoreCase("n")){
             System.out.println("Input invalido, digite S/N");
-            yesNo = scanner.nextLine();
+            yesNo = scanner.next();
         }
-        return true;
+        return yesNo;
+    }
+
+    public static Integer inputInRange1to7(Integer input){
+        int inp = input;
+       while(inp <= 0 || inp >= 7){
+           System.out.println("Input Invalido");
+           InputValidator.intValidator(scanner);
+           inp = scanner.nextInt();
+       }
+       return inp;
     }
 }
