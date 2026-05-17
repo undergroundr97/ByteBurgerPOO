@@ -19,13 +19,19 @@ public class Cardapio {
         itensDoCardapio.add(item5);
         itensDoCardapio.add(item6);
     }
+    public static ItemCardapio getItemCardapio(Integer selecionado){
+         return itensDoCardapio.get(selecionado);
+    }
 
-    public static void getItensDoCardapio() {
+
+
+    public static void getCardapio() {
          int index = 1;
         for (ItemCardapio itemCardapio : itensDoCardapio) {
             System.out.println(index + " - " + itemCardapio.nome + " R$" + String.format( "%.2f",itemCardapio.preco));
             index++;
         }
     }
+
 
 }
