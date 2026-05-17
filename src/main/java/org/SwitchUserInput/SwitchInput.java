@@ -23,17 +23,20 @@ public class SwitchInput {
                 case 1 -> {
                     ArrayList<ItemCardapio> itensPedido = new ArrayList<>();
                     System.out.println("Digite seu nome para identificacao do pedido: ");
-                    String nomeProPedido = scanner.nextLine();
                     String adicionarItemAoPedido;
+                    String nomeProPedido = scanner.nextLine();;
                     do {
                         Cardapio.getCardapio();
                         InputValidator.intValidator(scanner);
                         Integer itemSelecionado = scanner.nextInt();
+                        itemSelecionado = InputValidator.inputInRange1to7(itemSelecionado);
                         scanner.nextLine();
-                        itensPedido.add(Cardapio.getItemCardapio(itemSelecionado));
+                        itensPedido.add(Cardapio.getItemCardapio((itemSelecionado - 1)));
+                        System.out.println(Cardapio.getItemCardapio((itemSelecionado - 1)).getNome() + " adicionado " +
+                                "ao pedido.");
                         System.out.println("Deseja adicionar outro item ao pedido? (S/N)");
                         adicionarItemAoPedido = scanner.nextLine();
-                        InputValidator.yesNoValidator(adicionarItemAoPedido);
+                        adicionarItemAoPedido = InputValidator.yesNoValidator(adicionarItemAoPedido);
                     } while (!adicionarItemAoPedido.equals("n"));
                     pedido = new Pedido(nomeProPedido, itensPedido);
                     pedido.mostrarPedido();
@@ -53,6 +56,7 @@ public class SwitchInput {
                         }
                     } else {
                         try {
+                            Pedido.increaseNumeroPedidos();
                             System.out.println("Processando pedido, aguarde...");
                             Thread.sleep(900);
                             System.out.println("Pedido realizado com sucesso!");
@@ -68,6 +72,7 @@ public class SwitchInput {
                     Menu.exibirMenu();
                     InputValidator.intValidator(scanner);
                     input = scanner.nextInt();
+                    scanner.nextLine();
                 }
 
             }
