@@ -21,10 +21,7 @@ public class ByteBurger {
         Pedido pedido = new Pedido();
         do {
             switch (opcaoCliente) {
-                case 4 -> {
-                    SorteioDoDia.sorteioDoDia();
-
-                }
+                case 0 -> {}
                 case 1 -> {
                     ArrayList<ItemCardapio> itensPedido = new ArrayList<>();
                     System.out.println("Digite seu nome para identificacao do pedido: ");
@@ -156,14 +153,14 @@ public class ByteBurger {
                     Menu.exibirMenu();
                     opcaoCliente = getClienteInput();
                 }
+                case 4 -> {
+                    SorteioDoDia.sorteioDoDia();
+                    Menu.exibirMenu();
+                    opcaoCliente = getClienteInput();
+                }
 
             }
         } while (opcaoCliente != 0);
     }
-//    static Integer getClienteInput(){
-//        InputValidator.intValidator(scanner);
-//        Integer input = scanner.nextInt();
-//        scanner.nextLine();
-//        return input;
-//    }
+
 }
