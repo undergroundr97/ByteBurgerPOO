@@ -11,12 +11,17 @@ import java.util.Scanner;
 
 public class SwitchInput {
     static Scanner scanner = new Scanner(System.in);
-    public static void clienteInput(Integer input){
+    public static void clienteInput(){
+        System.out.println("Bem vindo ao byteBurger");
+        Menu.exibirMenu();
+        InputValidator.intValidator(scanner);
+        Integer opcaoCliente = scanner.nextInt();
+        scanner.nextLine();
         Pedido pedido;
         do {
-            switch (input) {
+            switch (opcaoCliente) {
                 case 0 -> {
-                    break;
+
                 }
                 case 1 -> {
                     ArrayList<ItemCardapio> itensPedido = new ArrayList<>();
@@ -69,11 +74,61 @@ public class SwitchInput {
                     }
                     Menu.exibirMenu();
                     InputValidator.intValidator(scanner);
-                    input = scanner.nextInt();
+                    opcaoCliente = scanner.nextInt();
                     scanner.nextLine();
+                }
+                case 2 -> {
+                    Menu.exibirSubMenu();
+                    InputValidator.intValidator(scanner);
+                    Integer opcaoSubMenu = scanner.nextInt();
+                    scanner.nextLine();
+                    do {
+                        switch(opcaoSubMenu){
+                            case 0 -> {
+
+                            }
+                            case 1 -> {
+                                Cardapio.cardapioExibirLanches();
+                                System.out.println("Digite qualquer tecla para voltar");
+                                String confirma = scanner.nextLine();
+                                Menu.exibirSubMenu();
+                                InputValidator.intValidator(scanner);
+                                opcaoSubMenu = scanner.nextInt();
+                                scanner.nextLine();
+                            }
+                            case 2 -> {
+                                Cardapio.cardapioExibirAcompanhamentos();
+                                System.out.println("Digite qualquer tecla para voltar");
+                                String confirma = scanner.nextLine();
+                                Menu.exibirSubMenu();
+                                InputValidator.intValidator(scanner);
+                                opcaoSubMenu = scanner.nextInt();
+                                scanner.nextLine();
+                            }
+                            case 3 -> {
+                                Cardapio.cardapioExibirBebidas();
+                                System.out.println("Digite qualquer tecla para voltar");
+                                String confirma = scanner.nextLine();
+                                Menu.exibirSubMenu();
+                                InputValidator.intValidator(scanner);
+                                opcaoSubMenu = scanner.nextInt();
+                                scanner.nextLine();
+                            }
+                            default ->{
+                                System.out.println("Opção não encontrada!");
+                                InputValidator.intValidator(scanner);
+                                opcaoSubMenu = scanner.nextInt();
+                                scanner.nextLine();
+                            }
+                        }
+                        Menu.exibirMenu();
+                        InputValidator.intValidator(scanner);
+                        opcaoCliente = scanner.nextInt();
+                        scanner.nextLine();
+                    } while(opcaoSubMenu != 0);
                 }
 
             }
-        } while (input != 0);
+        } while (opcaoCliente != 0);
     }
 }
