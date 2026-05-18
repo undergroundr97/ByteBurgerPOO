@@ -7,11 +7,12 @@ public class SorteioDoDia {
 
     static int itemCardapioSorteado = (int) (Math.random() * 6);
     static ItemCardapio itemSorteado = Cardapio.getItemCardapio(itemCardapioSorteado);
+    static double precoOriginal = itemSorteado.getPreco();
     static double precoDesconto = itemSorteado.getPreco() * 0.80;
 
     public static void sorteioDoDia() {
 
-        double precoOriginal = itemSorteado.getPreco();
+        precoOriginal = itemSorteado.getPreco();
 
         System.out.println("\n------ SORTEIO DO DIA ------");
         System.out.println("O item sorteado do dia: " + itemSorteado.getNome() + " está com 20% de desconto!");
