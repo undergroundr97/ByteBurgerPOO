@@ -14,10 +14,8 @@ public class ByteBurger {
     public static void byteBurgerStart(){
         System.out.println("Bem vindo ao byteBurger");
         Menu.exibirMenu();
-        InputValidator.intValidator(scanner);
-        Integer opcaoCliente = scanner.nextInt();
-        scanner.nextLine();
-        Pedido pedido;
+        Integer opcaoCliente = getClienteInput();
+        Pedido pedido = new Pedido();
         do {
             switch (opcaoCliente) {
                 case 0 -> {
@@ -27,21 +25,21 @@ public class ByteBurger {
                     ArrayList<ItemCardapio> itensPedido = new ArrayList<>();
                     System.out.println("Digite seu nome para identificacao do pedido: ");
                     String adicionarItemAoPedido;
-                    String nomeProPedido = scanner.nextLine();;
+                    String nomeProPedido = scanner.nextLine();
+                    Pedido.increaseNumeroPedidos();
                     do {
                         Cardapio.exibirCardapio();
-                        InputValidator.intValidator(scanner);
-                        Integer itemSelecionado = scanner.nextInt();
+                        Integer itemSelecionado = getClienteInput();
                         itemSelecionado = InputValidator.inputInRange1to7(itemSelecionado);
-                        scanner.nextLine();
                         itensPedido.add(Cardapio.getItemCardapio((itemSelecionado - 1)));
                         System.out.println(Cardapio.getItemCardapio((itemSelecionado - 1)).getNome() + " adicionado " +
                                 "ao pedido.");
                         System.out.println("Deseja adicionar outro item ao pedido? (S/N)");
                         adicionarItemAoPedido = scanner.nextLine();
                         adicionarItemAoPedido = InputValidator.yesNoValidator(adicionarItemAoPedido);
-                    } while (!adicionarItemAoPedido.equals("n"));
+                    } while (!adicionarItemAoPedido.equalsIgnoreCase("n"));
                     pedido = new Pedido(nomeProPedido, itensPedido);
+                    pedido.adicionarValoresPedido();
                     pedido.mostrarPedido();
                     System.out.println("Confirmar Pedido? (TECLA N CANCELA PEDIDO)");
                     String confirmarPedido = scanner.nextLine();
@@ -59,7 +57,6 @@ public class ByteBurger {
                         }
                     } else {
                         try {
-                            Pedido.increaseNumeroPedidos();
                             System.out.println("Processando pedido, aguarde...");
                             Thread.sleep(900);
                             System.out.println("Pedido realizado com sucesso!");
@@ -73,15 +70,11 @@ public class ByteBurger {
                         }
                     }
                     Menu.exibirMenu();
-                    InputValidator.intValidator(scanner);
-                    opcaoCliente = scanner.nextInt();
-                    scanner.nextLine();
+                    opcaoCliente = getClienteInput();
                 }
                 case 2 -> {
                     Menu.exibirSubMenu();
-                    InputValidator.intValidator(scanner);
-                    Integer opcaoSubMenu = scanner.nextInt();
-                    scanner.nextLine();
+                    Integer opcaoSubMenu = getClienteInput();
                     do {
                         switch(opcaoSubMenu){
                             case 0 -> {
@@ -92,43 +85,82 @@ public class ByteBurger {
                                 System.out.println("Digite qualquer tecla para voltar");
                                 String confirma = scanner.nextLine();
                                 Menu.exibirSubMenu();
-                                InputValidator.intValidator(scanner);
-                                opcaoSubMenu = scanner.nextInt();
-                                scanner.nextLine();
+                                opcaoSubMenu = getClienteInput();
                             }
                             case 2 -> {
                                 Cardapio.cardapioExibirAcompanhamentos();
                                 System.out.println("Digite qualquer tecla para voltar");
                                 String confirma = scanner.nextLine();
                                 Menu.exibirSubMenu();
-                                InputValidator.intValidator(scanner);
-                                opcaoSubMenu = scanner.nextInt();
-                                scanner.nextLine();
+                                opcaoSubMenu = getClienteInput();
                             }
                             case 3 -> {
                                 Cardapio.cardapioExibirBebidas();
                                 System.out.println("Digite qualquer tecla para voltar");
                                 String confirma = scanner.nextLine();
                                 Menu.exibirSubMenu();
-                                InputValidator.intValidator(scanner);
-                                opcaoSubMenu = scanner.nextInt();
-                                scanner.nextLine();
+                                opcaoSubMenu = getClienteInput();
                             }
                             default ->{
                                 System.out.println("Opção não encontrada!");
-                                InputValidator.intValidator(scanner);
-                                opcaoSubMenu = scanner.nextInt();
-                                scanner.nextLine();
+                                opcaoSubMenu = getClienteInput();
                             }
                         }
-                        Menu.exibirMenu();
-                        InputValidator.intValidator(scanner);
-                        opcaoCliente = scanner.nextInt();
-                        scanner.nextLine();
                     } while(opcaoSubMenu != 0);
+                    Menu.exibirMenu();
+                    opcaoCliente = getClienteInput();
+                }
+                case 3 -> {
+                    Double valorRecebido = 0.0;
+                    if(pedido.getTotalPedido() == 0.0){
+                        System.out.println("Nenhum pedido a ser processado!");
+                        Menu.exibirMenu();
+                        opcaoCliente = getClienteInput();
+                        break;
+                    }
+                    System.out.println("Seu pedido foi: ");
+                    pedido.mostrarPedido();
+                    System.out.println("Adicione fundos para realizar pagamento: ");
+                    InputValidator.doubleValidator(scanner);
+                    valorRecebido += scanner.nextDouble();
+                    System.out.println("Você adicionou: R$" + valorRecebido);
+                    while(valorRecebido < pedido.getTotalPedido()){
+                        System.out.println("Valor insuficiente, adicione mais fundos!");
+                        System.out.println("Fundos adicionados: R$" + valorRecebido);
+                        InputValidator.doubleValidator(scanner);
+                        valorRecebido += scanner.nextDouble();
+                    }
+                    try {
+                        System.out.println("Pagamento suficente recebido, verificando troco...");
+                        Thread.sleep(500);
+                        if(valorRecebido > pedido.getTotalPedido()){
+                            System.out.println("Troco de: " + String.format("%.2f",
+                                    (valorRecebido - pedido.getTotalPedido())));
+                            Thread.sleep(500);
+                            System.out.println("Voltando ao menu...");
+                            Thread.sleep(500);
+                        } else {
+                            System.out.println("Nenhum troco!");
+                            Thread.sleep(500);
+                            System.out.println("Voltando ao menu...");
+                            Thread.sleep(500);
+                        }
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    pedido = new Pedido();
+                    Menu.exibirMenu();
+                    opcaoCliente = getClienteInput();
                 }
 
             }
         } while (opcaoCliente != 0);
+    }
+
+    static Integer getClienteInput(){
+        InputValidator.intValidator(scanner);
+        Integer input = scanner.nextInt();
+        scanner.nextLine();
+        return input;
     }
 }
