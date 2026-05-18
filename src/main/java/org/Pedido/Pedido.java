@@ -1,6 +1,4 @@
 package org.Pedido;
-
-import javax.naming.CompositeName;
 import java.util.ArrayList;
 
 public class Pedido {

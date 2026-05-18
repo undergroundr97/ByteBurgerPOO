@@ -3,7 +3,7 @@ package org.InputValidor;
 import java.util.Scanner;
 
 public class InputValidator {
-    static Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
     public static boolean intValidator(Scanner scanner){
        while(!scanner.hasNextInt()){
            System.out.println("Input invalido");
@@ -36,5 +36,13 @@ public class InputValidator {
            inp = scanner.nextInt();
        }
        return inp;
+    }
+
+
+    public static Integer getClienteInput(){
+        InputValidator.intValidator(scanner);
+        Integer input = scanner.nextInt();
+        scanner.nextLine();
+        return input;
     }
 }
