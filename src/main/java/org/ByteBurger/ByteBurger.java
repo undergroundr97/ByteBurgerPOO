@@ -15,10 +15,12 @@ import static org.InputValidor.InputValidator.getClienteInput;
 public class ByteBurger {
     static Scanner scanner = new Scanner(System.in);
     public static void byteBurgerStart(){
+        SorteioDoDia.descontoSorteado();
         System.out.println("Bem vindo ao byteBurger");
         Menu.exibirMenu();
         Integer opcaoCliente = getClienteInput();
         Pedido pedido = new Pedido();
+        SorteioDoDia.sorteioDoDia();
         do {
             switch (opcaoCliente) {
                 case 0 -> {}
@@ -154,7 +156,6 @@ public class ByteBurger {
                     opcaoCliente = getClienteInput();
                 }
                 case 4 -> {
-                    SorteioDoDia.sorteioDoDia();
                     Menu.exibirMenu();
                     opcaoCliente = getClienteInput();
                 }

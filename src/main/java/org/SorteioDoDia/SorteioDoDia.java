@@ -12,8 +12,6 @@ public class SorteioDoDia {
 
     public static void sorteioDoDia() {
 
-        precoOriginal = itemSorteado.getPreco();
-
         System.out.println("\n------ SORTEIO DO DIA ------");
         System.out.println("O item sorteado do dia: " + itemSorteado.getNome() + " está com 20% de desconto!");
         System.out.printf("Preço original: R$ %.2f%n", precoOriginal);
