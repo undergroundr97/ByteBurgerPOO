@@ -18,6 +18,7 @@ public class SorteioDoDia {
         System.out.println("O item sorteado do dia: " + itemSorteado.getNome() + " está com 20% de desconto!");
         System.out.printf("Preço original: R$ %.2f%n", precoOriginal);
         System.out.printf("Preço com desconto: R$ %.2f%n", precoDesconto);
+        itemSorteado.setPreco(precoDesconto);
 
     }
 }
