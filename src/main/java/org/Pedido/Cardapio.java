@@ -3,7 +3,7 @@ package org.Pedido;
 import java.util.ArrayList;
 
 public class Cardapio {
-     static ArrayList<ItemCardapio> itensDoCardapio = new ArrayList<>();
+     public static ArrayList<ItemCardapio> itensDoCardapio = new ArrayList<>();
 
      static {
         ItemCardapio item1 = new ItemCardapio("Byte Burger Classico", 22.90);
@@ -69,5 +69,7 @@ public class Cardapio {
         System.out.println("Digite sua opcao: ");
     }
 
-
+    public static void sorteioDodia() {
+         sorteioDodia();
+    }
 }

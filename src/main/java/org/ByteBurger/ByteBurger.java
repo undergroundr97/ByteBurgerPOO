@@ -5,6 +5,7 @@ import org.Menu.Menu;
 import org.Pedido.Cardapio;
 import org.Pedido.ItemCardapio;
 import org.Pedido.Pedido;
+import org.SorteioDoDia.SorteioDoDia;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,7 +19,8 @@ public class ByteBurger {
         Pedido pedido = new Pedido();
         do {
             switch (opcaoCliente) {
-                case 0 -> {
+                case 4 -> {
+                    SorteioDoDia.sorteioDoDia();
 
                 }
                 case 1 -> {

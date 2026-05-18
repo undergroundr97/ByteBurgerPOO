@@ -16,4 +16,8 @@ public class ItemCardapio {
     public Double getPreco() {
         return preco;
     }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
 }
