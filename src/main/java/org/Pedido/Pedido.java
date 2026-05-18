@@ -4,13 +4,16 @@ import javax.naming.CompositeName;
 import java.util.ArrayList;
 
 public class Pedido {
-    private static Integer numeroTotalPedidos = 1;
+    private static Integer numeroTotalPedidos = 0;
     ArrayList<ItemCardapio> itensSelecionados;
     public String nome;
     private Double totalPedido = 0.0;
     public Pedido(String nome, ArrayList<ItemCardapio> itensSelecionados){
         this.nome = nome;
         this.itensSelecionados = itensSelecionados;
+    }
+    public Pedido(){
+
     }
     public Double getTotalPedido(){
         return totalPedido;
@@ -23,11 +26,14 @@ public class Pedido {
         for (ItemCardapio itensSelecionado : itensSelecionados) {
             System.out.println(" -> " + itensSelecionado.getNome() + " - R$" + String.format("%.2f",
                     itensSelecionado.getPreco()) );
-            totalPedido += itensSelecionado.getPreco();
-
         }
         System.out.println("----------- TOTAL ------------ ");
-        System.out.println(" == Total do pedido: R$"+String.format("%.2f", getTotalPedido())+  " ");
+        System.out.println(" == Total do pedido: R$"+String.format("%.2f", getTotalPedido()));
+    }
+    public void adicionarValoresPedido(){
+        itensSelecionados.forEach(item -> {
+           totalPedido += item.getPreco();
+        });
     }
 
     public static void increaseNumeroPedidos(){
