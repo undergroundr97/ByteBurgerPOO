@@ -1,4 +1,4 @@
-package org.SwitchUserInput;
+package org.ByteBurger;
 
 import org.InputValidor.InputValidator;
 import org.Menu.Menu;
@@ -9,9 +9,9 @@ import org.Pedido.Pedido;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SwitchInput {
+public class ByteBurger {
     static Scanner scanner = new Scanner(System.in);
-    public static void clienteInput(){
+    public static void byteBurgerStart(){
         System.out.println("Bem vindo ao byteBurger");
         Menu.exibirMenu();
         InputValidator.intValidator(scanner);
