@@ -10,8 +10,7 @@ public class Menu {
         System.out.println("0 - Encerrar o Sistema");
         System.out.println("Digite opção:");
     }
-
-    public static void subMenu(){
+    public static void exibirSubMenu(){
         System.out.println("-------------------");
         System.out.println("1 - Lanches");
         System.out.println("2 - Acompanhmentos");

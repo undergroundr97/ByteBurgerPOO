@@ -10,6 +10,8 @@ import org.SorteioDoDia.SorteioDoDia;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static org.InputValidor.InputValidator.getClienteInput;
+
 public class ByteBurger {
     static Scanner scanner = new Scanner(System.in);
     public static void byteBurgerStart(){
@@ -158,11 +160,10 @@ public class ByteBurger {
             }
         } while (opcaoCliente != 0);
     }
-
-    static Integer getClienteInput(){
-        InputValidator.intValidator(scanner);
-        Integer input = scanner.nextInt();
-        scanner.nextLine();
-        return input;
-    }
+//    static Integer getClienteInput(){
+//        InputValidator.intValidator(scanner);
+//        Integer input = scanner.nextInt();
+//        scanner.nextLine();
+//        return input;
+//    }
 }
