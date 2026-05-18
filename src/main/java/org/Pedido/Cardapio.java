@@ -22,7 +22,40 @@ public class Cardapio {
     public static ItemCardapio getItemCardapio(Integer selecionado){
          return itensDoCardapio.get(selecionado);
     }
+    public static void cardapioExibirLanches(){
+        int index = 0;
+        for (ItemCardapio item : itensDoCardapio) {
+            if(index == 2){
+                break;
+            }
+            System.out.println(" -> " + item.getNome() + " R$" + String.format("%.2f", item.getPreco()));
+            index++;
+        }
+    }
+    public static void cardapioExibirAcompanhamentos(){
+         int index = 2;
+        for (ItemCardapio item : itensDoCardapio) {
+            item = itensDoCardapio.get(index);
+            if (index == 4){
+                break;
+            }
+            System.out.println(" -> " + item.getNome() + " R$" + String.format("%.2f", item.getPreco()));
+            index++;
+        }
+    }
 
+    public static void cardapioExibirBebidas(){
+        int index = 4;
+        for (ItemCardapio item : itensDoCardapio) {
+            if (index == 6){
+                break;
+            }
+            item = itensDoCardapio.get(index);
+
+            System.out.println(" -> " + item.getNome() + " R$" + String.format("%.2f", item.getPreco()));
+            index++;
+        }
+    }
 
 
     public static void exibirCardapio() {
